@@ -41,7 +41,9 @@ describe('Register Use Case', () => {
       password: '123456',
     })
 
-    expect(createUserPromise).rejects.toBeInstanceOf(UserAlreadyExistsError)
+    await expect(createUserPromise).rejects.toBeInstanceOf(
+      UserAlreadyExistsError,
+    )
   })
 
   it('should be able to register', async () => {
