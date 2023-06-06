@@ -26,8 +26,8 @@ describe('Check In Use Case', () => {
       title: 'JS gym',
       description: 'blabla',
       phone: '89089090908',
-      latidude: 0,
-      longitude: 0,
+      latidude: 40.69754,
+      longitude: -74.3093378,
     })
 
     vi.useFakeTimers()
@@ -90,5 +90,25 @@ describe('Check In Use Case', () => {
     })
 
     expect(checkIn.id).toEqual(expect.any(String))
+  })
+
+  it('should not be able to check in on distant gym', async () => {
+    await gymsRepository.create({
+      id: 'gym-02',
+      title: 'TS gym',
+      description: 'blabla',
+      phone: '89089090908',
+      latidude: 40.69754,
+      longitude: -74.3093378,
+    })
+
+    const checkInPromise = sut.execute({
+      gymId: 'gym-02',
+      userId: 'user-02',
+      userLatitude: -23.6814346,
+      userLongitude: -46.9249667,
+    })
+
+    await expect(checkInPromise).rejects.toBeInstanceOf(Error)
   })
 })
