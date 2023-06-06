@@ -26,7 +26,7 @@ describe('Check In Use Case', () => {
       title: 'JS gym',
       description: 'blabla',
       phone: '89089090908',
-      latidude: 40.69754,
+      latitude: 40.69754,
       longitude: -74.3093378,
     })
 
@@ -98,7 +98,7 @@ describe('Check In Use Case', () => {
       title: 'TS gym',
       description: 'blabla',
       phone: '89089090908',
-      latidude: 40.69754,
+      latitude: 40.69754,
       longitude: -74.3093378,
     })
 
