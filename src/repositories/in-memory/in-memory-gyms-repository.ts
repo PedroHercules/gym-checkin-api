@@ -10,9 +10,9 @@ export class InMemoryGymsRepository implements GymsRepository {
     const gym: Gym = {
       id: data.id || randomUUID(),
       title: data.title,
-      description: data.description || null,
-      phone: data.phone || null,
-      latidude: new Decimal(data.latidude.toString()),
+      description: data.description ?? null,
+      phone: data.phone ?? null,
+      latitude: new Decimal(data.latitude.toString()),
       longitude: new Decimal(data.longitude.toString()),
     }
 
