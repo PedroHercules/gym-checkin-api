@@ -6,6 +6,8 @@ import {
   Coordinate,
   getDistanceBetweenCoordinates,
 } from '@/utils/get-distance-between-coordinates'
+import { MaxNumberOfCheckInslError } from './errors/max-number-of-check-ins'
+import { MaxDistanceError } from './errors/max-distance'
 
 interface CheckInUseCaseRequest {
   userId: string
@@ -58,7 +60,7 @@ export class CheckInUseCase {
     const MAX_DISTANCE_IN_KILOMETERS = 0.1 // 0.1 Km == 100 meters
 
     if (distance > MAX_DISTANCE_IN_KILOMETERS) {
-      throw new Error()
+      throw new MaxDistanceError()
     }
 
     const checkInOnSameDate = await this.checkInsRepository.findUserIdByDate(
@@ -67,7 +69,7 @@ export class CheckInUseCase {
     )
 
     if (checkInOnSameDate) {
-      throw new Error()
+      throw new MaxNumberOfCheckInslError()
     }
 
     const checkIn = await this.checkInsRepository.create({

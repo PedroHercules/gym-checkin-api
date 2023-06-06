@@ -3,6 +3,8 @@ import { InMemoryCheckInsRepository } from '@/repositories/in-memory/in-memory-c
 import { CheckInUseCase } from './check-in'
 import { GymsRepository } from '@/repositories/gyms-repository'
 import { InMemoryGymsRepository } from '@/repositories/in-memory/in-memory-gyms-repository'
+import { MaxNumberOfCheckInslError } from './errors/max-number-of-check-ins'
+import { MaxDistanceError } from './errors/max-distance'
 
 /**
  * Fases do TDD
@@ -66,7 +68,9 @@ describe('Check In Use Case', () => {
       userLongitude: -74.3093378,
     })
 
-    await expect(checkInPromise).rejects.toBeInstanceOf(Error)
+    await expect(checkInPromise).rejects.toBeInstanceOf(
+      MaxNumberOfCheckInslError,
+    )
   })
 
   it('should be able to check in twice but in different days', async () => {
@@ -109,6 +113,6 @@ describe('Check In Use Case', () => {
       userLongitude: -46.9249667,
     })
 
-    await expect(checkInPromise).rejects.toBeInstanceOf(Error)
+    await expect(checkInPromise).rejects.toBeInstanceOf(MaxDistanceError)
   })
 })
