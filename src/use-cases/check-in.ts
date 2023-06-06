@@ -46,7 +46,7 @@ export class CheckInUseCase {
     }
 
     const gymCoordinates: Coordinate = {
-      latitude: gym.latidude.toNumber(),
+      latitude: gym.latitude.toNumber(),
       longitude: gym.longitude.toNumber(),
     }
     // calculate distance between user and gym
