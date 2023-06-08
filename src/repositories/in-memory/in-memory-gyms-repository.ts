@@ -25,4 +25,14 @@ export class InMemoryGymsRepository implements GymsRepository {
     const gym = this.gyms.find((gym) => gym.id === id) || null
     return gym
   }
+
+  async searchMany(query: string, page: number) {
+    const gyms = this.gyms
+      .filter((item) =>
+        item.title.toLocaleLowerCase().includes(query.toLocaleLowerCase()),
+      )
+      .slice((page - 1) * 20, page * 20)
+
+    return gyms
+  }
 }
