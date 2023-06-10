@@ -3,7 +3,7 @@ import { CreateGymUseCase } from '../create-gym'
 
 // Factory pattern
 
-export function makeFetchNearbyGymsUseCase() {
+export function makeCreateGymUseCase() {
   const gymsRepository = new PrismaGymsRepository()
   const useCase = new CreateGymUseCase(gymsRepository)
 
