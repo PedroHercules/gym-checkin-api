@@ -2,7 +2,7 @@ import request from 'supertest'
 import { app } from '@/app'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 
-describe('Register (E2E', () => {
+describe('Register (E2E)', () => {
   beforeAll(async () => {
     await app.ready()
   })
